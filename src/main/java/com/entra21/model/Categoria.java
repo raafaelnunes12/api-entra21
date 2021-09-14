@@ -1,32 +1,40 @@
 package com.entra21.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Categoria {
-    private int id;
-    private String decricao;
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String descricao;
 
     public Categoria() {}
 
-    public Categoria(int id, String decricao) {
+    public Categoria(Long id, String descricao) {
         this.id = id;
-        this.decricao = decricao;
+        this.descricao = descricao;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getDecricao() {
-        return decricao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDecricao(String decricao) {
-        this.decricao = decricao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     @Override
@@ -46,7 +54,7 @@ public class Categoria {
     public String toString() {
         return "Categoria{" +
                 "id=" + id +
-                ", decricao='" + decricao + '\'' +
+                ", decricao='" + descricao + '\'' +
                 '}';
     }
 }

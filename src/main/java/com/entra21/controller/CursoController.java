@@ -1,27 +1,25 @@
 package com.entra21.controller;
 
-import com.entra21.model.Categoria;
+import com.entra21.controller.dto.CursoDTO;
 import com.entra21.model.Curso;
-import org.springframework.stereotype.Controller;
+import com.entra21.repositories.CursoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
 import java.util.List;
 
-@Controller
+@RestController
+@RequestMapping("/curso")
 public class CursoController {
 
-    @RequestMapping("/cursos")
-    @ResponseBody
-    public List<Curso> listarTudo(){
-        Curso springWeb = new Curso(1L, "Spring web", new Categoria(1, "Programacao"));
-        Curso postgreSQL = new Curso(2L, "PostgreSQL", new Categoria(2, "BD"));
-        Curso css = new Curso(3L, "CSS", new Categoria(3, "Design"));
-        return Arrays.asList(springWeb, postgreSQL, css);
-    }
+    @Autowired
+    CursoRepository cursoRepository;
 
-    public void salvar(){
-
+    @GetMapping
+    public List<CursoDTO> listar(){
+        List<Curso> cursoList = cursoRepository.findAll();
+        return CursoDTO.converter(cursoList);
     }
 }

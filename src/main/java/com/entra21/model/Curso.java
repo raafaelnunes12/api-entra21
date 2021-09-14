@@ -1,15 +1,23 @@
 package com.entra21.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class Curso {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String nome;
-    private Categoria categoria;
+    private String categoria;
 
     public Curso() {}
 
-    public Curso(Long id, String nome, Categoria categoria) {
+    public Curso(Long id, String nome, String categoria) {
         this.id = id;
         this.nome = nome;
         this.categoria = categoria;
@@ -31,11 +39,11 @@ public class Curso {
         this.nome = nome;
     }
 
-    public Categoria getCategoria() {
+    public String getCategoria() {
         return categoria;
     }
 
-    public void setCategoria(Categoria categoria) {
+    public void setCategoria(String categoria) {
         this.categoria = categoria;
     }
 
