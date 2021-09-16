@@ -1,5 +1,7 @@
 package com.entra21.controller;
 
+import com.entra21.controller.dto.AtualizarDadoDTO;
+import com.entra21.controller.dto.DetalheTopicoDTO;
 import com.entra21.controller.dto.TopicoDTO;
 import com.entra21.controller.dto.TopicoFORM;
 import com.entra21.model.*;
@@ -55,6 +57,26 @@ public class TopicoController {
         if (topico.isPresent()){
             topicoRepository.deleteById(id);
             return ResponseEntity.ok().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/{id}")
+    @Transactional
+    public ResponseEntity<TopicoDTO> atualizar(@PathVariable Long id, @RequestBody @Valid AtualizarDadoDTO form){
+        Optional<Topico> topicoPesquisado = topicoRepository.findById(id);
+        if (topicoPesquisado.isPresent()) {
+            Topico topico = form.atualizar(id, topicoRepository);
+            return ResponseEntity.ok(new TopicoDTO(topico));
+        }
+        return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<DetalheTopicoDTO> detalhar(@PathVariable Long id){
+        Optional<Topico> topicoPesquisado = topicoRepository.findById(id);
+        if (topicoPesquisado.isPresent()) {
+            return ResponseEntity.ok(new DetalheTopicoDTO(topicoPesquisado.get()));
         }
         return ResponseEntity.notFound().build();
     }
