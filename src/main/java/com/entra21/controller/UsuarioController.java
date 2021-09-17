@@ -1,7 +1,8 @@
 package com.entra21.controller;
 
-import com.entra21.controller.dto.*;
-import com.entra21.model.Topico;
+import com.entra21.controller.dto.AtualizarUsuarioDTO;
+import com.entra21.controller.dto.UsuarioDTO;
+import com.entra21.controller.dto.UsuarioFORM;
 import com.entra21.model.Usuario;
 import com.entra21.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;

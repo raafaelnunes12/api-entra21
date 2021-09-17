@@ -17,8 +17,7 @@ public class Resposta {
     @ManyToOne
     private Usuario autor;
 
-    public Resposta(Long id, String mensagem) {
-        this.id = id;
+    public Resposta(String mensagem) {
         this.mensagem = mensagem;
     }
 
